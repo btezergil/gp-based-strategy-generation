@@ -1,0 +1,29 @@
+{:aliases {:dev/env {:extra-paths ["dev"]
+                     :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/slf4j-factory" "-Xmx24g" "-Xms8g"]
+                     ;:override-deps {org.clojars.btezergil/nature {:local/root "/Users/btezergil/phd/nature"}}
+                     }
+           :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.6"}
+                          envvar/envvar {:mvn/version "1.1.2"}}
+                   :ns-default build}}
+ :deps {org.clojure/clojure {:mvn/version "1.12.3"}
+        org.clojure/tools.logging {:mvn/version "1.3.0"}
+        org.clojure/data.csv {:mvn/version "1.1.0"}
+        org.clojure/data.json {:mvn/version "2.5.1"}
+        telegrambot-lib/telegrambot-lib {:mvn/version "2.15.0"}
+        org.slf4j/slf4j-api {:mvn/version "2.0.17"}
+        envvar/envvar {:mvn/version "1.1.2"}
+        com.cognitect.aws/api {:mvn/version "0.8.741"}
+        com.cognitect.aws/endpoints {:mvn/version "871.2.31.23"}
+        com.cognitect.aws/sns {:mvn/version "871.2.30.11"}
+        com.cognitect.aws/lambda {:mvn/version "871.2.31.23"}
+        com.cognitect.aws/secretsmanager {:mvn/version "871.2.29.35"}
+        com.taoensso/faraday {:mvn/version "1.12.3"}
+        com.taoensso/telemere {:mvn/version "1.1.0"}
+        com.taoensso/telemere-slf4j {:mvn/version "1.1.0"}
+        danlentz/clj-uuid {:mvn/version "0.2.0"}
+        clj-http/clj-http {:mvn/version "3.13.0"}
+        org.ta4j/ta4j-core {:mvn/version "0.18"}
+        org.clojars.btezergil/nature {:mvn/version "1.0.1"}
+        metasoarous/oz {:mvn/version "2.0.0-alpha5"}}
+ :mvn/repos {"clojars" {:url "https://repo.clojars.org/"} "central" {:url "https://repo1.maven.org/maven2/"}}
+ :paths ["src" "resources" "target"]}
