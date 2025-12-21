@@ -1,16 +1,20 @@
-# clojure-scraps
+# Genetic Programming-based Strategy Generation for Trading in Financial Markets
 
-A Clojure library designed to ... well, that part is up to you.
+This repository contains the code that implements the proposals in the paper above.
+The code is written in Clojure and has the Dockerfile and start script available to run in apptainer.
+main.clj file contains the entry points into the code, examples can be found below.
+
+Code for benchmarks can be found under the deeplearning folder.
 
 ## Usage
 
 Run command for main function as entrypoint: clj -M -m clojure-scraps.main r/t/b PARAMS
-Docker local build command: docker buildx build -t btezergil/clj-scraps-app:latest -f Dockerfile .
-Docker local run command: docker run -d --name btezergil-trade-bot -it btezergil/clj-scraps-app:latest sh
+
+*start.sh* file can be used for apptainer runs, and the Dockerfile can be used to prepare an image which can then be used by apptainer.
 
 ## License
 
-Copyright © 2023 FIXME
+Copyright © 2025 FIXME
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at

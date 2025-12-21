@@ -1,7 +1,6 @@
 (ns clojure-scraps.main
   (:require [clojure-scraps.genetic :as g]
             [clojure-scraps.datagetter :as dg]
-            [clojure-scraps.bot :as tb]
             [clojure.tools.logging :as log]
             [clojure.pprint :as pp]
             [clojure.string :as str]
@@ -15,13 +14,9 @@
   "Initial runner function, calls the accessor function to start evolution."
   ([filenames] (run-evolution filenames nil))
   ([filenames opt-args]
-   (try (let [out (java.io.StringWriter.)
-              evolution-result (g/start-evolution filenames opt-args)]
-          (log/info (pp/pprint (map (fn [res] (dissoc res :parents)) evolution-result) out))
-          (tb/message-to-me (.toString out)))
-        (catch Exception e (do
-                             (tb/message-to-me (str "Caught exception: " (.getMessage e)))
-                             (throw e))))))
+   (let [out (java.io.StringWriter.)
+         evolution-result (g/start-evolution filenames opt-args)]
+     (log/info (pp/pprint (map (fn [res] (dissoc res :parents)) evolution-result) out)))))
 
 (defn run-evolution-with-futures
   [filenames opt-args]
@@ -45,22 +40,6 @@
   (t/streams->telemere!)
   (t/check-interop))
 
-(defn get-botcmd-arg
-  "Gets the received command and returns the argument given to the command."
-  [cmd]
-  (-> cmd
-      (str/split #" ")
-      second))
-
-(defn bot-commands-fn
-  "Supported bot commands by the application are defined here."
-  [cmd]
-  (let [cmdarg (get-botcmd-arg cmd)]
-    (condp (fn [substr s] (str/starts-with? s substr)) cmd
-      "/start-experiment" (future (run-evolution dg/evolution-filenames-map))
-      "/test" (log/info "received tail message:" cmdarg)
-      (log/warn "Unknown command:" cmd))))
-
 (defn- parse-arg
   [argmap arg]
   (let [argpair (str/split arg #"=")
@@ -83,7 +62,6 @@
     (condp = arg
       "r" (run-evolution-with-futures dg/evolution-filenames-map opt-args)
       "t" (time (test-individual))
-      "b" (tb/start-bot-long-polling bot-commands-fn)
       (log/error "No execution mode defined for the given argument:" arg))))
 
 ;(-main)

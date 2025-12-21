@@ -5,7 +5,6 @@
             [clojure-scraps.params :as p]
             [clojure-scraps.strategy :as strat]
             [clojure-scraps.evaltree :as tree]
-            [clojure-scraps.bot :as tb]
             [clojure.spec.alpha :as s]
             [clojure.tools.logging :as log]
             [clojure.math :as math]
